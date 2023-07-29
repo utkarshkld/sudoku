@@ -1,0 +1,251 @@
+<head>
+  
+  <title>Sudoku Solver</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      background-color: antiquewhite;
+      
+    }
+    .sudoku-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .sudoku-board {
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+    .sudoku-row {
+      margin-bottom: 5px;
+    }
+    .sudoku-cell {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      vertical-align: middle;
+      font-size: x-large;
+      border: 1px solid #ccc;
+      background-color: #aad895; /* Light gray background color */
+    }
+    .sudoku-cell:hover{
+      background-color: #11e9df;
+      
+    }
+    
+    .sudoku-cell input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      font-size: 30px;
+      text-align: center;
+      background: none;
+    }
+    .solve-button, .reset-button, .clear_all-button{
+      background-color: rgb(30, 0, 255);
+      
+      border-radius: 10px ;
+      padding: 10px 20px;
+      font-size: 16px;
+      color :#ffffff
+      
+    }
+    .reset-button:hover,.solve-button:hover,.clear_all-button:hover {
+      background-color: #cf2d00;
+    }
+    .solved-cell {
+      background-color: lightgreen;
+    }
+    .sudoku-heading {
+    font-size: 36px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+    }
+    .intro{
+      font-size: 20px;
+      color: rgb(255, 255, 255);
+    }
+    .invalid-input {
+      border: 2px solid red;
+      background-color: #cf2d00 !important;
+    }
+    #page2{
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: blanchedalmond;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #page1{
+    height: 130vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: #000000;
+  }
+  #main{
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  #inst{
+    font-size: 30px;
+    font-family: 'Dancing Script', cursive;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: black;
+    width: 70%;
+    height: 70%;
+    border: 2px solid rgb(0, 53, 53);
+    align-items: center;
+    border-radius: 5px;
+    padding: 40px;
+}
+
+  </style>
+</head>
+
+
+<body>
+  <div id="main">
+  <div id="page1">
+    <div class="sudoku-container">
+      <h1 class="sudoku-heading">Sudoku Solver</h1>
+      
+      
+  <div class="sudoku-board">
+    <div class="sudoku-row">
+      <input class="sudoku-cell" type="char" maxlength="1">
+      <input class="sudoku-cell" type="char" maxlength="1">
+      <input class="sudoku-cell" type="char" maxlength="1">
+      <input class="sudoku-cell" type="char" maxlength="1">
+      <input class="sudoku-cell" type="char" maxlength="1">
+      <input class="sudoku-cell" type="char" maxlength="1">
+      <input class="sudoku-cell" type="char" maxlength="1">
+      <input class="sudoku-cell" type="char" maxlength="1">
+      <input class="sudoku-cell" type="char" maxlength="1">
+    </div>
+    <div class="sudoku-row">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+    </div>
+    <div class="sudoku-row">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+      </div>
+      <div class="sudoku-row">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+      </div>
+      <div class="sudoku-row">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+      </div>
+      <div class="sudoku-row">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+      </div>
+      <div class="sudoku-row">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+      </div>
+      <div class="sudoku-row">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+      </div>
+      <div class="sudoku-row">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+        <input class="sudoku-cell" type="char" maxlength="1">
+      </div>
+
+    
+  </div>
+  <div>
+    <button class="solve-button">Solve</button>
+    <button class="reset-button">Set</button>
+    <button class="clear_all-button">Clear All</button>
+  </div>  
+  </div>
+  </div>
+
+  <div id="page2">
+    <div id="inst">
+        <p><u>Instructions:</u></p>
+        <p>The user can set a problem and begin to fill. When a invalid input is entered we it will be highlighted in "Red" Color</p>
+        <p>By pressing "Solve" button the sudoku answer will be generated and printed</p>
+        <p>When pressed "Clear All" is pressed all the input are lost and sudoku will reset</p>       
+        
+    </div>
+</div>
+  </div>
+
+
+  <script src="script.js"></script>
+
+
+
+</body>
